@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Students | Student MS</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Student MS</h2>
+
+            <a href="/">Dashboard</a>
+            <a href="/students" class="active">Students</a>
+            <a href="/add-student">Add Student</a>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+
+            <!-- Page Header -->
+            <div class="page-header">
+                <div>
+                    <h1>Student Management</h1>
+                    <p>View, search, and manage your student records.</p>
+                </div>
+
+                <a href="/add-student" class="submit-button add-student-link">
+                    + Add Student
+                </a>
+            </div>
+
+            <!-- Flash Messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% for category, message in messages %}
+                    <div class="alert {{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endwith %}
+
+            <!-- Students Table Card -->
+            <div class="student-form-card students-list-card">
+
+                <div class="students-toolbar">
+                    <div>
+                        <h2>All Students</h2>
+                        <p>Search and manage student information.</p>
+                    </div>
+
+                    <form method="GET" action="/students" class="search-form">
+                        <input
+                            type="text"
+                            name="search"
+                            placeholder="Search students..."
+                            value="{{ request.args.get('search', '') }}"
+                        >
+
+                        <button type="submit" class="submit-button">
+                            Search
+                        </button>
+
+                        <a href="/students" class="cancel-button">
+                            Clear
+                        </a>
+                    </form>
+                </div>
+
+                <!-- Responsive Table -->
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Course</th>
+                                <th>Year</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for student in students %}
+                            <tr>
+                                <td>{{ student[0] }}</td>
+                                <td>{{ student[1] }}</td>
+                                <td>{{ student[2] }}</td>
+                                <td>{{ student[3] }}</td>
+                                <td>{{ student[4] }}</td>
+                                <td>{{ student[5] }}</td>
+
+                                <td class="action-buttons">
+                                    <a href="/edit-student/{{ student[0] }}"
+                                       class="edit-button">
+                                        Edit
+                                    </a>
+
+                                    <a href="/delete-student/{{ student[0] }}"
+                                       class="delete-button"
+                                       onclick="return confirm('Are you sure you want to delete this student?');">
+                                        Delete
+                                    </a>
+                                </td>
+                            </tr>
+
+                            {% else %}
+                            <tr>
+                                <td colspan="7" class="empty-state">
+                                    No students found.
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

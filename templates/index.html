@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | Student MS</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Student MS</h2>
+
+            <a href="/" class="active">Dashboard</a>
+            <a href="/students">Students</a>
+            <a href="/add-student">Add Student</a>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+
+            <!-- Dashboard Header -->
+            <div class="dashboard-header">
+                <div>
+                    <h1>Dashboard</h1>
+                    <p>Welcome back! Here's an overview of your students.</p>
+                </div>
+
+                <a href="/add-student" class="submit-button dashboard-add-button">
+                    + Add New Student
+                </a>
+            </div>
+
+            <!-- Overview Heading -->
+            <div class="section-heading">
+                <h2>Overview</h2>
+                <p>Your student management summary</p>
+            </div>
+
+            <!-- Statistics Cards -->
+            <div class="cards">
+
+                <div class="card dashboard-card">
+                    <div class="stat-icon students-icon">S</div>
+                    <h3>Total Students</h3>
+                    <p>{{ total_students }}</p>
+                    <span class="card-description">Registered students</span>
+                </div>
+
+                <div class="card dashboard-card">
+                    <div class="stat-icon courses-icon">C</div>
+                    <h3>Total Courses</h3>
+                    <p>{{ total_courses }}</p>
+                    <span class="card-description">Courses represented</span>
+                </div>
+
+                <div class="card dashboard-card">
+                    <div class="stat-icon years-icon">Y</div>
+                    <h3>Total Years</h3>
+                    <p>{{ total_years }}</p>
+                    <span class="card-description">Academic year levels</span>
+                </div>
+
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions-card">
+                <h2>Quick Actions</h2>
+                <p>Choose what you would like to do next.</p>
+
+                <div class="quick-actions">
+
+                    <a href="/add-student" class="quick-action">
+                        <span class="quick-action-icon">+</span>
+                        <span>
+                            <strong>Add Student</strong>
+                            <small>Register a new student</small>
+                        </span>
+                        <span class="action-arrow">&rarr;</span>
+                    </a>
+
+                    <a href="/students" class="quick-action">
+                        <span class="quick-action-icon list-icon">&#9776;</span>
+                        <span>
+                            <strong>View Students</strong>
+                            <small>Search and manage records</small>
+                        </span>
+                        <span class="action-arrow">&rarr;</span>
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

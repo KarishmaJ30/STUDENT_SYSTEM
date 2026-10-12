@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Student | Student MS</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Student MS</h2>
+
+            <a href="/">Dashboard</a>
+            <a href="/students" class="active">Students</a>
+            <a href="/add-student">Add Student</a>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+
+            <!-- Page Header -->
+            <div class="page-header">
+                <div>
+                    <h1>Edit Student</h1>
+                    <p>Update the student's information below.</p>
+                </div>
+
+                <a href="/students" class="back-button">
+                    Back to Students
+                </a>
+            </div>
+
+            <!-- Edit Form Card -->
+            <div class="student-form-card">
+
+                <div class="form-card-header">
+                    <div class="form-icon">&#9998;</div>
+
+                    <div>
+                        <h2>Student Information</h2>
+                        <p>Modify the details and save your changes.</p>
+                    </div>
+                </div>
+
+                <form method="POST" class="student-form">
+
+                    <div class="form-grid">
+
+                        <!-- Name -->
+                        <div class="form-group">
+                            <label for="name">Full Name <span>*</span></label>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                value="{{ student[1] }}"
+                                placeholder="Enter full name"
+                                required
+                            >
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-group">
+                            <label for="email">Email Address <span>*</span></label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                value="{{ student[2] }}"
+                                placeholder="student@example.com"
+                                required
+                            >
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                value="{{ student[3] }}"
+                                placeholder="Enter 10-digit phone number"
+                                pattern="[0-9]{10}"
+                                maxlength="10"
+                                title="Please enter a 10-digit phone number"
+                            >
+                        </div>
+
+                        <!-- Course -->
+                        <div class="form-group">
+                            <label for="course">Course <span>*</span></label>
+                            <input
+                                type="text"
+                                id="course"
+                                name="course"
+                                value="{{ student[4] }}"
+                                placeholder="e.g. BTech CSE"
+                                required
+                            >
+                        </div>
+
+                        <!-- Academic Year -->
+                        <div class="form-group">
+                            <label for="year">Academic Year <span>*</span></label>
+
+                            <select id="year" name="year" required>
+                                <option value="">Select academic year</option>
+
+                                <option value="1"
+                                    {% if student[5]|string == '1' %}selected{% endif %}>
+                                    First Year
+                                </option>
+
+                                <option value="2"
+                                    {% if student[5]|string == '2' %}selected{% endif %}>
+                                    Second Year
+                                </option>
+
+                                <option value="3"
+                                    {% if student[5]|string == '3' %}selected{% endif %}>
+                                    Third Year
+                                </option>
+
+                                <option value="4"
+                                    {% if student[5]|string == '4' %}selected{% endif %}>
+                                    Fourth Year
+                                </option>
+                            </select>
+                        </div>
+
+                        <!-- Address -->
+                        <div class="form-group full-width">
+                            <label for="address">Address</label>
+                            <textarea
+                                id="address"
+                                name="address"
+                                rows="4"
+                                placeholder="Enter student's address"
+                            >{{ student[6] or '' }}</textarea>
+                        </div>
+
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <a href="/students" class="cancel-button">
+                            Cancel
+                        </a>
+
+                        <button type="submit" class="submit-button">
+                            Save Changes
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <p class="form-note">
+                <span>*</span> Fields marked with an asterisk are required.
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

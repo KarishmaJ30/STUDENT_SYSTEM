@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Student | Student MS</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Student MS</h2>
+
+            <a href="/">Dashboard</a>
+            <a href="/students">Students</a>
+            <a href="/add-student" class="active">Add Student</a>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+
+            <!-- Page Header -->
+            <div class="page-header">
+                <div>
+                    <h1>Add New Student</h1>
+                    <p>Enter the student's information below.</p>
+                </div>
+
+                <a href="/students" class="back-button">
+                    Back to Students
+                </a>
+            </div>
+
+            <!-- Form Card -->
+            <div class="student-form-card">
+
+                <div class="form-card-header">
+                    <div class="form-icon">+</div>
+
+                    <div>
+                        <h2>Student Information</h2>
+                        <p>Fill in the details to register a new student.</p>
+                    </div>
+                </div>
+
+                <form method="POST" class="student-form">
+
+                    <div class="form-grid">
+
+                        <!-- Name -->
+                        <div class="form-group">
+                            <label for="name">Full Name <span>*</span></label>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder="Enter full name"
+                                required
+                            >
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-group">
+                            <label for="email">Email Address <span>*</span></label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="student@example.com"
+                                required
+                            >
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                placeholder="Enter 10-digit phone number"
+                                pattern="[0-9]{10}"
+                                maxlength="10"
+                                title="Please enter a 10-digit phone number"
+                            >
+                        </div>
+
+                        <!-- Course -->
+                        <div class="form-group">
+                            <label for="course">Course <span>*</span></label>
+                            <input
+                                type="text"
+                                id="course"
+                                name="course"
+                                placeholder="e.g. BTech CSE"
+                                required
+                            >
+                        </div>
+
+                        <!-- Year -->
+                        <div class="form-group">
+                            <label for="year">Academic Year <span>*</span></label>
+                            <select id="year" name="year" required>
+                                <option value="">Select academic year</option>
+                                <option value="1">First Year</option>
+                                <option value="2">Second Year</option>
+                                <option value="3">Third Year</option>
+                                <option value="4">Fourth Year</option>
+                            </select>
+                        </div>
+
+                        <!-- Address -->
+                        <div class="form-group full-width">
+                            <label for="address">Address</label>
+                            <textarea
+                                id="address"
+                                name="address"
+                                rows="4"
+                                placeholder="Enter student's address"
+                            ></textarea>
+                        </div>
+
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <a href="/students" class="cancel-button">
+                            Cancel
+                        </a>
+
+                        <button type="submit" class="submit-button">
+                            + Add Student
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <p class="form-note">
+                <span>*</span> Fields marked with an asterisk are required.
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
